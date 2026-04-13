@@ -45,7 +45,7 @@ const DATA = {
       title: "Smart-Mess", 
       desc: "Developed a web platform enabling students to pre book meals . Because why not?",
       tags: ["TypeScript", "Node.js"],
-      link: "https://smart-mess-nine.vercel.app/"
+      link: "https://smart-mess-git-main-yashika-nagdevs-projects.vercel.app/"
     }
   ],
   skills: ["React", "TypeScript","Tailwind","Java", "Node.js", "Python", "Docker", "Firebase", "Git", "SQL"]
@@ -65,31 +65,74 @@ const Marquee = ({ text }: { text: string }) => (
   </div>
 );
 
-const Sticker = ({ children, className, rotate = 0 }: any) => (
-  <motion.div
-    drag
-    dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
-    whileHover={{ scale: 1.1 }}
-    style={{ rotate: `${rotate}deg` }}
-    className={`absolute p-4 bg-white border-4 border-black brutal-shadow cursor-grab active:cursor-grabbing z-20 ${className}`}
-  >
-    {children}
-  </motion.div>
-);
+const Sticker = ({ children, className, rotate = 0, isChaos = false }: any) => {
+  const [randomPos, setRandomPos] = useState({ x: 0, y: 0, r: rotate });
+
+  useEffect(() => {
+    if (isChaos) {
+      const interval = setInterval(() => {
+        setRandomPos({
+          x: Math.random() * 400 - 200,
+          y: Math.random() * 400 - 200,
+          r: Math.random() * 360
+        });
+      }, 500);
+      return () => clearInterval(interval);
+    } else {
+      setRandomPos({ x: 0, y: 0, r: rotate });
+    }
+  }, [isChaos, rotate]);
+
+  return (
+    <motion.div
+      drag
+      dragConstraints={{ left: -200, right: 200, top: -200, bottom: 200 }}
+      whileHover={{ scale: 1.1 }}
+      animate={{ 
+        x: randomPos.x, 
+        y: randomPos.y, 
+        rotate: randomPos.r 
+      }}
+      transition={{ type: "spring", damping: 10 }}
+      className={`absolute p-4 bg-white border-4 border-black brutal-shadow cursor-grab active:cursor-grabbing z-20 ${className}`}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const ProjectBox = ({ title, desc, tags, link }: any) => (
-  <a href={link} className="bg-white border-4 border-black p-6 brutal-shadow-hover group block">
-    <div className="flex justify-between items-start mb-4">
-      <h3 className="text-3xl font-black uppercase leading-none">{title}</h3>
-      <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+  <a href={link} className="bg-white border-4 border-black p-6 brutal-shadow-hover group block relative overflow-hidden">
+    {/* Pixel Sort Overlay (Simulated) */}
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-0">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/20 to-transparent animate-melt" />
+      <div className="absolute inset-0 flex flex-col">
+        {[...Array(20)].map((_, i) => (
+          <div 
+            key={i} 
+            className="h-[5%] w-full bg-black/5 border-b border-black/10"
+            style={{ 
+              transform: `translateX(${Math.sin(i) * 10}px)`,
+              animation: `pixel-sort ${0.5 + Math.random()}s infinite alternate`
+            }}
+          />
+        ))}
+      </div>
     </div>
-    <p className="text-lg mb-6 font-medium">{desc}</p>
-    <div className="flex flex-wrap gap-2">
-      {tags.map((tag: string) => (
-        <span key={tag} className="bg-primary text-black px-3 py-1 border-2 border-black font-bold text-sm uppercase">
-          {tag}
-        </span>
-      ))}
+
+    <div className="relative z-10">
+      <div className="flex justify-between items-start mb-4">
+        <h3 className="text-3xl font-black uppercase leading-none">{title}</h3>
+        <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+      </div>
+      <p className="text-lg mb-6 font-medium">{desc}</p>
+      <div className="flex flex-wrap gap-2">
+        {tags.map((tag: string) => (
+          <span key={tag} className="bg-primary text-black px-3 py-1 border-2 border-black font-bold text-sm uppercase">
+            {tag}
+          </span>
+        ))}
+      </div>
     </div>
   </a>
 );
@@ -98,6 +141,8 @@ const ProjectBox = ({ title, desc, tags, link }: any) => (
 
 export default function App() {
   const [vibe, setVibe] = useState('good');
+  const [isChaos, setIsChaos] = useState(false);
+  const [isAscii, setIsAscii] = useState(false);
   const [githubData, setGithubData] = useState<any>(null);
 
   useEffect(() => {
@@ -109,8 +154,20 @@ export default function App() {
     }
   }, []);
 
+  useEffect(() => {
+    document.body.className = `vibe-${vibe} ${isChaos ? 'chaos-mode' : ''} ${isAscii ? 'ascii-mode' : ''}`;
+  }, [vibe, isChaos, isAscii]);
+
+  const ASCII_NAME = `
+ __     __     _     ____  _   _ ___ _  __    _    
+ \\ \\   / /    / \\   / ___|| | | |_ _| |/ /   / \\   
+  \\ \\ / /    / _ \\  \\___ \\| |_| || || ' /   / _ \\  
+   \\ V /    / ___ \\  ___) |  _  || || . \\  / ___ \\ 
+    |_|    /_/   \\_\\|____/|_| |_|___|_|\\_\\/_/   \\_\\
+  `;
+
   return (
-    <div className={`min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-black overflow-x-hidden vibe-${vibe}`}>
+    <div className={`min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-black overflow-x-hidden vibe-${vibe} ${isChaos ? 'animate-pulse' : ''} ${isAscii ? 'font-mono' : ''}`}>
       
       {/* Header */}
       <header className="p-6 border-b-4 border-black flex justify-between items-center sticky top-0 bg-background z-50">
@@ -125,23 +182,36 @@ export default function App() {
       <section className="relative p-6 md:p-20 border-b-4 border-black overflow-hidden">
         {/* GitHub Profile Sticker */}
         {githubData && githubData.login && (
-          <Sticker className="top-20 right-10 md:right-20 w-48" rotate={-5}>
-            <img 
-              src={githubData.avatar_url} 
-              alt="GitHub Profile" 
-              className="w-full aspect-square border-4 border-black mb-2 object-cover bg-zinc-100"
-              referrerPolicy="no-referrer"
-            />
+          <Sticker isChaos={isChaos} className="top-20 right-10 md:right-20 w-48" rotate={-5}>
+            {isAscii ? (
+              <pre className="text-[6px] leading-[4px] font-bold overflow-hidden">
+                {`
+      .---.
+     /     \\
+    | () () |
+     \\  ^  /
+      |||||
+      |||||
+                `}
+              </pre>
+            ) : (
+              <img 
+                src={githubData.avatar_url} 
+                alt="GitHub Profile" 
+                className="w-full aspect-square border-4 border-black mb-2 object-cover bg-zinc-100"
+                referrerPolicy="no-referrer"
+              />
+            )}
             <p className="font-black text-xs uppercase tracking-tighter">@{githubData.login}</p>
             <p className="text-[10px] font-bold opacity-60 leading-tight">{githubData.bio || "No bio available"}</p>
           </Sticker>
         )}
 
-        <Sticker className="top-10 left-1/2 md:left-2/3" rotate={12}>
-          <p className="font-black text-xl">VIBE CHECK: PASSED ✅</p>
+        <Sticker isChaos={isChaos} className="top-10 left-1/2 md:left-2/3" rotate={12}>
+          <p className="font-black text-xl">{isAscii ? "[ VIBE: 100 ]" : "VIBE CHECK: PASSED ✅"}</p>
         </Sticker>
         
-        <Sticker className="bottom-20 left-10 hidden md:block" rotate={-8}>
+        <Sticker isChaos={isChaos} className="bottom-20 left-10 hidden md:block" rotate={-8}>
           <div className="flex gap-2">
             <Ghost fill="black" /> <Ghost fill="black" /> <Ghost fill="black" />
           </div>
@@ -152,15 +222,21 @@ export default function App() {
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.5, type: 'spring' }}
         >
-          <h2 className="text-[12vw] font-black uppercase leading-[0.8] tracking-tighter mb-10">
-            {DATA.tagline.split(' ').map((word, i) => (
-              <span key={i} className={word === 'COOL' || word === 'SH*T' ? 'bg-primary px-4 border-4 border-black mr-4 inline-block' : 'mr-4 inline-block'}>
-                {word}
-              </span>
-            ))}
-          </h2>
+          {isAscii ? (
+            <pre className="text-[1.5vw] font-black leading-none mb-10 text-primary bg-black p-4 border-4 border-black inline-block">
+              {ASCII_NAME}
+            </pre>
+          ) : (
+            <h2 className="text-[12vw] font-black uppercase leading-[0.8] tracking-tighter mb-10">
+              {DATA.tagline.split(' ').map((word, i) => (
+                <span key={i} className={word === 'COOL' || word === 'SH*T' ? 'bg-primary px-4 border-4 border-black mr-4 inline-block' : 'mr-4 inline-block'}>
+                  {word}
+                </span>
+              ))}
+            </h2>
+          )}
           <p className="text-2xl md:text-4xl font-bold max-w-3xl leading-tight mb-12">
-            {DATA.description}
+            {isAscii ? DATA.description.toUpperCase().replace(/ /g, "_") : DATA.description}
           </p>
           <div className="flex flex-wrap gap-6">
             <button 
@@ -230,11 +306,25 @@ export default function App() {
               <Frown size={48} />
             </button>
           </div>
-          <p className="text-2xl font-bold italic">
+          <p className="text-2xl font-bold italic mb-8">
             {vibe === 'good' && "Feeling like a main character today."}
             {vibe === 'meh' && "Just grinding through the simulation."}
             {vibe === 'bad' && "Error 404: Motivation not found."}
           </p>
+          <div className="flex gap-4">
+            <button 
+              onClick={() => setIsChaos(!isChaos)}
+              className={`flex-1 py-4 border-4 border-white font-black uppercase tracking-widest transition-all ${isChaos ? 'bg-red-500 text-white animate-bounce' : 'bg-white text-black hover:bg-primary hover:text-black'}`}
+            >
+              {isChaos ? 'STOP CHAOS' : 'CHAOS MODE'}
+            </button>
+            <button 
+              onClick={() => setIsAscii(!isAscii)}
+              className={`flex-1 py-4 border-4 border-white font-black uppercase tracking-widest transition-all ${isAscii ? 'bg-primary text-black' : 'bg-white text-black hover:bg-primary hover:text-black'}`}
+            >
+              {isAscii ? 'EXIT ASCII' : 'ASCII MODE'}
+            </button>
+          </div>
         </div>
       </section>
 

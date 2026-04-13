@@ -128,3 +128,26 @@
     @apply flex animate-marquee;
   }
 }
+
+.chaos-mode {
+  filter: contrast(1.5) saturate(2);
+  cursor: help;
+}
+
+@keyframes melt {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes pixel-sort {
+  0% { transform: translateX(-5px); }
+  100% { transform: translateX(5px); }
+}
+
+.animate-melt {
+  animation: melt 2s linear infinite;
+}
+
+.ascii-mode {
+  cursor: crosshair;
+}
