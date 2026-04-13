@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: 'Syne', sans-serif;
+    --font-sans: 'Space Grotesk', sans-serif;
+    --color-primary: var(--primary);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+
+    --animate-marquee: marquee 20s linear infinite;
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0 0 0);
+    --primary: oklch(0.868 0.189 146.12); /* Neon Green */
+    --border: oklch(0 0 0);
+    --radius: 0px;
+    
+    /* shadcn variables */
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-black;
+    }
+  body {
+    @apply bg-background text-foreground selection:bg-primary selection:text-black transition-colors duration-300;
+    }
+  html {
+    @apply font-sans scroll-smooth;
+    }
+}
+
+.vibe-good {
+  --primary: #00FF00;
+  --background: #FFFFFF;
+  --foreground: #000000;
+  --border: #000000;
+}
+
+.vibe-meh {
+  --primary: #FFD700; /* Vibrant Gold/Yellow */
+  --background: #FFFFFF; /* Pure White */
+  --foreground: #000000;
+  --border: #000000;
+}
+
+.vibe-meh .bg-white {
+  @apply bg-white;
+}
+
+.vibe-bad {
+  --primary: #FF4D4D; /* Bright Red */
+  --background: #1A0000; /* Dark Reddish background */
+  --foreground: #FFE6E6; /* Light Reddish text */
+  --border: #FF4D4D;
+}
+
+.vibe-bad * {
+  @apply border-red-200/50;
+}
+
+.vibe-bad .bg-white {
+  @apply bg-red-950 text-red-50;
+}
+
+.vibe-bad .bg-black {
+  @apply bg-red-500 text-black;
+}
+
+.vibe-bad .text-white {
+  @apply text-red-950;
+}
+
+.vibe-bad .text-black {
+  @apply text-red-50;
+}
+
+.vibe-bad .brutal-shadow {
+  box-shadow: 4px 4px 0px 0px rgba(255, 77, 77, 0.5);
+}
+
+.vibe-bad .brutal-shadow-hover:hover {
+  box-shadow: 8px 8px 0px 0px rgba(255, 77, 77, 0.8);
+}
+
+@layer utilities {
+  .brutal-shadow {
+    box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+  }
+  .brutal-shadow-hover {
+    @apply transition-all duration-100;
+  }
+  .brutal-shadow-hover:hover {
+    box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+    transform: translate(-2px, -2px);
+  }
+  .brutal-shadow-active:active {
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+    transform: translate(4px, 4px);
+  }
+  .marquee {
+    @apply whitespace-nowrap overflow-hidden flex;
+  }
+  .marquee-content {
+    @apply flex animate-marquee;
+  }
+}
