@@ -24,7 +24,7 @@ const DATA = {
   githubUsername: "Yashika-web16", // Your GitHub username to fetch profile data
   linkedinUrl: "https://www.linkedin.com/in/yashika-nagdev-85bb54278?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   email: "yashikanagdev16@gmail.com",
-  resumeUrl: "https://drive.google.com/file/d/1zdPO_sFXU31d6YQs3gSnIKv92rVC_wbX/view?usp=sharing", // PASTE YOUR GOOGLE DRIVE / DROPBOX RESUME LINK HERE
+  resumeUrl: "https://drive.google.com/file/d/1zdPO_sFXU31d6YQs3gSnIKv92rVC_wbX/view?usp=sharing",  
   tagline: "I BUILD COOL SH*T FOR THE WEB.",
   description: "Yashika Nagdev — CS @ Manipal Jaipur, building with AI, designing with intent, and breaking things just to rebuild them better.",
   location: "India",
