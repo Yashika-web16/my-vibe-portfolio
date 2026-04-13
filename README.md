@@ -1,75 +1,31 @@
-# React + TypeScript + Vite
+# ⚡ VIBE.CHECK Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-vibe, brutalist portfolio built for developers who want to stand out. This isn't just a resume; it's a digital artifact.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **React 18** + **Vite** (Lightning fast)
+- **TypeScript** (Type-safe chaos)
+- **Tailwind CSS** (Utility-first styling)
+- **Framer Motion** (Smooth animations & physics)
+- **Lucide React** (Clean iconography)
 
-## React Compiler
+## 🌪️ Cool Features
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### 1. Chaos Mode
+Click the **CHAOS MODE** button to watch the site lose its mind. Stickers teleport, the screen pulses, and the vibe intensifies.
 
-Note: This will impact Vite dev & build performances.
+### 2. ASCII Art Mode
+Toggle **ASCII MODE** to transform the entire UI into a retro terminal aesthetic, complete with ASCII banners and character-art profile pictures.
 
-## Expanding the ESLint configuration
+### 3. Pixel Sort Hover
+Hover over project cards to see a simulated **Pixel Sorting** effect—making your work look like a glitchy digital masterpiece.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 4. Vibe Switcher
+Switch between **Good**, **Meh**, and **Bad** vibes to dynamically change the site's color palette and mood.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### 5. Draggable Stickers
+Interactive stickers scattered throughout the site that you can drag, toss, and play with.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Built with 🖤 by [Yashika Nagdev](https://github.com/Yashika-web16)
