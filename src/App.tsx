@@ -45,7 +45,7 @@ const DATA = {
       title: "Smart-Mess", 
       desc: "Developed a web platform enabling students to pre book meals . Because why not?",
       tags: ["TypeScript", "Node.js"],
-      link: "https://smart-mess-5yc95d0v5-yashika-nagdevs-projects.vercel.app/"
+      link: "https://smart-mess-nine.vercel.app/"
     }
   ],
   skills: ["React", "TypeScript","Tailwind","Java", "Node.js", "Python", "Docker", "Firebase", "Git", "SQL"]
