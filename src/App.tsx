@@ -24,7 +24,7 @@ const DATA = {
   githubUsername: "Yashika-web16", // Your GitHub username to fetch profile data
   linkedinUrl: "https://www.linkedin.com/in/yashika-nagdev-85bb54278?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
   email: "yashikanagdev16@gmail.com",
-  resumeUrl: "https://drive.google.com/file/d/1zdPO_sFXU31d6YQs3gSnIKv92rVC_wbX/view?usp=sharing",  
+  resumeUrl: "https://drive.google.com/file/d/1jgbJjQhzQgk_C0AmKVC8QR8BLgF5IO1q/view?usp=sharing",  
   tagline: "I BUILD COOL SH*T FOR THE WEB.",
   description: "Yashika Nagdev — CS @ Manipal Jaipur, building with AI, designing with intent, and breaking things just to rebuild them better.",
   location: "India",
@@ -40,6 +40,12 @@ const DATA = {
       desc: "Built an React based AI research assisstant for summarisation,chat,and intelligent PDF interaction. Don't ask me about the RESEARCH PAPERS.",
       tags: ["React", "TypeScript","RAG Pipeline","Vector Databases"],
       link: "https://paper-pulse-seven.vercel.app/"
+    },
+    {
+  title: "Uber AI Ride Optimization",
+  desc: "Built an AI-powered ride optimization platform featuring fare prediction, route optimization, driver allocation, and live GPS visualization.",
+  tags: ["Python", "XGBoost", "Streamlit", "NetworkX", "Folium"],
+  link: "https://uber-ai-project-um3zy9qjhzfp2m3bjxu9ze.streamlit.app/"
     },
     { 
       title: "Smart-Mess", 
